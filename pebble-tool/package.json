@@ -1,10 +1,16 @@
 {
 	"name": "pebble-tool",
 	"displayName": "Pebble Tool",
-	"description": "Tools to assist with Pebble smartwatch development, requires the SDK to be installed. See https://willow.systems/pebble-tool for more",
-	"version": "0.0.1",
+	"description": "Tools to assist with Pebble smartwatch development, requires the Pebble SDK to be installed. See https://willow.systems/pebble-tool for more",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.53.0"
+	},
+	"publisher": "WillowSystems",
+	"icon": "icon.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Willow-Systems/pebble-tool-vscode-extension.git"
 	},
 	"categories": [
 		"Other"
@@ -42,7 +48,7 @@
 			},
 			{
 				"command": "pebble-tool.changeEmulator",
-				"title": "pbl: Change the selected emulator"
+				"title": "pbl: Change the current emulator"
 			},
 			{
 				"command": "pebble-tool.tempEmulator",
