@@ -2,7 +2,7 @@
 	"name": "pebble-tool",
 	"displayName": "Pebble Tool",
 	"description": "Tools to assist with Pebble smartwatch development, requires the Pebble SDK to be installed. See https://willow.systems/pebble-tool for more",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"engines": {
 		"vscode": "^1.53.0"
 	},
@@ -25,7 +25,8 @@
 		"onCommand:pebble-tool.pblCmd",
 		"onCommand:pebble-tool.generateUUID",
 		"onCommand:pebble-tool.setPhoneIP",
-		"onCommand:pebble-tool.installOnPhone"
+		"onCommand:pebble-tool.installOnPhone",
+		"onCommand:pebble-tool.openOutputWindow"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -69,6 +70,10 @@
 			{
 				"command": "pebble-tool.setPhoneIP",
 				"title": "pbl: Change the IP address of your phone"
+			},
+			{
+				"command": "pebble-tool.openOutputWindow",
+				"title": "pbl: Open Pebble output window"
 			}
 		]
 	},

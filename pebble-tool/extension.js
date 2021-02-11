@@ -284,6 +284,15 @@ function activate(context) {
 		
 
 	}));
+
+	//Open output
+	context.subscriptions.push(vscode.commands.registerCommand('pebble-tool.openOutputWindow', function () {
+
+		ctx.outputChannel.show();		
+
+	}));
+
+	
 	
 
 }
