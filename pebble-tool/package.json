@@ -1,0 +1,85 @@
+{
+	"name": "pebble-tool",
+	"displayName": "Pebble Tool",
+	"description": "Tools to assist with Pebble smartwatch development, requires the SDK to be installed. See https://willow.systems/pebble-tool for more",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.53.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:pebble-tool.build",
+		"onCommand:pebble-tool.showbuildoutput",
+		"onCommand:pebble-tool.selfCheck",
+		"onCommand:pebble-tool.install",
+		"onCommand:pebble-tool.changeEmulator",
+		"onCommand:pebble-tool.tempEmulator",
+		"onCommand:pebble-tool.pblCmd",
+		"onCommand:pebble-tool.generateUUID",
+		"onCommand:pebble-tool.setPhoneIP",
+		"onCommand:pebble-tool.installOnPhone"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "pebble-tool.build",
+				"title": "pbl: Build current project"
+			},
+			{
+				"command": "pebble-tool.showbuildoutput",
+				"title": "pbl: Show output from last build"
+			},
+			{
+				"command": "pebble-tool.selfCheck",
+				"title": "pbl: Check the Pebble SDK is ready for pebble-tool"
+			},
+			{
+				"command": "pebble-tool.install",
+				"title": "pbl: Install the on the current emulator"
+			},
+			{
+				"command": "pebble-tool.changeEmulator",
+				"title": "pbl: Change the selected emulator"
+			},
+			{
+				"command": "pebble-tool.tempEmulator",
+				"title": "pbl: Install on a specific emulator"
+			},
+			{
+				"command": "pebble-tool.pblCmd",
+				"title": "pbl: Run custom pebble command"
+			},
+			{
+				"command": "pebble-tool.generateUUID",
+				"title": "pbl: Generate new UUID"
+			},
+			{
+				"command": "pebble-tool.installOnPhone",
+				"title": "pbl: Install on your phone"
+			},
+			{
+				"command": "pebble-tool.setPhoneIP",
+				"title": "pbl: Change the IP address of your phone"
+			}
+		]
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.53.0",
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.0.4",
+		"@types/node": "^12.11.7",
+		"eslint": "^7.19.0",
+		"glob": "^7.1.6",
+		"mocha": "^8.2.1",
+		"typescript": "^4.1.3",
+		"vscode-test": "^1.5.0"
+	}
+}
