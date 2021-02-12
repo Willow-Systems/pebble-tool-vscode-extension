@@ -2,7 +2,7 @@
 	"name": "pebble-tool",
 	"displayName": "Pebble Tool",
 	"description": "Tools to assist with Pebble smartwatch development, requires the Pebble SDK to be installed. See https://willow.systems/pebble-tool for more",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"engines": {
 		"vscode": "^1.53.0"
 	},
@@ -26,7 +26,8 @@
 		"onCommand:pebble-tool.generateUUID",
 		"onCommand:pebble-tool.setPhoneIP",
 		"onCommand:pebble-tool.installOnPhone",
-		"onCommand:pebble-tool.openOutputWindow"
+		"onCommand:pebble-tool.openOutputWindow",
+		"onCommand:pebble-tool.cleanBuildInstall"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -74,6 +75,10 @@
 			{
 				"command": "pebble-tool.openOutputWindow",
 				"title": "pbl: Open Pebble output window"
+			},
+			{
+				"command": "pebble-tool.cleanBuildInstall",
+				"title": "pbl: Wipe, Build & Install to emulator"
 			}
 		],
 		"keybindings": [
@@ -106,6 +111,11 @@
                 "command": "pebble-tool.openOutputWindow",
                 "key": "ctrl+r o",
                 "mac": "ctrl+r o"
+            },
+			{
+                "command": "pebble-tool.cleanBuildInstall",
+                "key": "ctrl+r enter",
+                "mac": "ctrl+r enter"
             }
         ]
 	},

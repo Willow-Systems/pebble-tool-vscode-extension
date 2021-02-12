@@ -292,6 +292,83 @@ function activate(context) {
 
 	}));
 
+	context.subscriptions.push(vscode.commands.registerCommand('pebble-tool.cleanBuildInstall', function () {
+
+		//Callbacks in callbacks. Clean this up soon :)
+
+		
+		if (noPebbleTooling()) { return }
+
+		//cd
+		vscode.window.setStatusBarMessage(`Wiping emulator clean`);
+		ctx.outputChannel.appendLine("Wiping emulator");
+		try {
+			var pbldir = vscode.workspace.workspaceFolders[0].uri.fsPath;
+			console.log("chgdir to " + pbldir);
+			process.chdir(pbldir)
+		} catch (e) {
+			if (pbldir == undefined || pbldir == null) {
+				ctx.outputChannel.appendLine("Building Aborted. Not a pebble project directory");
+				vscode.window.showErrorMessage("Not a pebble project directory");
+			} else {
+				console.log("Could not change directory. Abort");
+				vscode.window.showErrorMessage("Could not change directory to " + pbldir);
+				buildData.output = "Could not change directory to " + pbldir
+				ctx.outputChannel.appendLine(buildData.output)
+			}
+			vscode.window.setStatusBarMessage(`Build aborted`);
+			return
+		}
+
+		//Run wipe
+		exec("pebble wipe", (error, stdout, stderr) => {
+
+			if (error) {
+				vscode.window.showErrorMessage(error.message);
+				ctx.outputChannel.appendLine("Failed to wipe emulator");
+				ctx.outputChannel.appendLine(error.message);
+				ctx.outputChannel.show();
+				return;
+
+			}
+			buildData.output = (stdout != null && stdout != "") ? stdout : "Wipe Complete"
+			vscode.window.setStatusBarMessage(`Wipe succeeded`);
+
+			//Build
+			vscode.window.setStatusBarMessage(`Building app`);
+			exec("pebble build", (error, stdout, stderr) => {
+
+				if (error) {
+					buildData.output = error.message;
+	
+					if (! ctx.knowsAboutShowOutput) {
+						vscode.window.showInformationMessage("use 'pbl: show output from last build' to open the output as a file")
+						ctx.knowsAboutShowOutput = true;
+					}
+	
+					vscode.window.showErrorMessage(error.message);
+					ctx.outputChannel.appendLine(error.message);
+					ctx.outputChannel.show();
+					
+					return;
+	
+				}
+	
+				buildData.output = (stdout != null) ? stdout : "Nothing to show"
+				if (stderr) { buildData.output += "\n" + stderr }
+				ctx.outputChannel.appendLine(buildData.output);
+				vscode.window.setStatusBarMessage(`Build succeeded`);
+				installOnEmulator();
+
+			});
+
+
+
+		});
+
+	}));
+
+	
 	
 	
 
@@ -309,7 +386,7 @@ function noPebbleTooling(asModal = true) {
 	}
 	if (whichPebble == "") {
 		fail = true
-		console.log("Blank");
+		console.log("Blank: " + whichPebble);
 	}
 		
 	if (fail) {
