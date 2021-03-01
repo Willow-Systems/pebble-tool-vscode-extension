@@ -78,7 +78,7 @@
 			},
 			{
 				"command": "pebble-tool.cleanBuildInstall",
-				"title": "pbl: Wipe, Build & Install to emulator"
+				"title": "pbl: Build & Install to emulator"
 			}
 		],
 		"keybindings": [

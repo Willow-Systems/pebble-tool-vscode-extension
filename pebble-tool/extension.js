@@ -300,8 +300,8 @@ function activate(context) {
 		if (noPebbleTooling()) { return }
 
 		//cd
-		vscode.window.setStatusBarMessage(`Wiping emulator clean`);
-		ctx.outputChannel.appendLine("Wiping emulator");
+		// vscode.window.setStatusBarMessage(`Wiping emulator clean`);
+		// ctx.outputChannel.appendLine("Wiping emulator");
 		try {
 			var pbldir = vscode.workspace.workspaceFolders[0].uri.fsPath;
 			console.log("chgdir to " + pbldir);
@@ -321,18 +321,18 @@ function activate(context) {
 		}
 
 		//Run wipe
-		exec("pebble wipe", (error, stdout, stderr) => {
+		// exec("pebble wipe", (error, stdout, stderr) => {
 
-			if (error) {
-				vscode.window.showErrorMessage(error.message);
-				ctx.outputChannel.appendLine("Failed to wipe emulator");
-				ctx.outputChannel.appendLine(error.message);
-				ctx.outputChannel.show();
-				return;
+		// 	if (error) {
+		// 		vscode.window.showErrorMessage(error.message);
+		// 		ctx.outputChannel.appendLine("Failed to wipe emulator");
+		// 		ctx.outputChannel.appendLine(error.message);
+		// 		ctx.outputChannel.show();
+		// 		return;
 
-			}
-			buildData.output = (stdout != null && stdout != "") ? stdout : "Wipe Complete"
-			vscode.window.setStatusBarMessage(`Wipe succeeded`);
+		// 	}
+		// 	buildData.output = (stdout != null && stdout != "") ? stdout : "Wipe Complete"
+		// 	vscode.window.setStatusBarMessage(`Wipe succeeded`);
 
 			//Build
 			vscode.window.setStatusBarMessage(`Building app`);
@@ -364,7 +364,7 @@ function activate(context) {
 
 
 
-		});
+		// });
 
 	}));
 
